@@ -35,7 +35,7 @@ func (r likeImpl) AddLike(ctx context.Context, in *models.Like) (*pb.AddLikeResp
 	if err != nil {
 		return nil, err
 	}
-	return &pb.AddLikeResp{Message: "like added"}, nil
+	return &pb.AddLikeResp{Massage: "like added"}, nil
 }
 
 func (r likeImpl) RemoveLike(ctx context.Context, in *pb.DeleleLikeReq) error {

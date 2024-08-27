@@ -18,10 +18,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TwitServiceClient is the client API for TwitService service.
+// TwitServiceClientClient is the client API for TwitServiceClient service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TwitServiceClient interface {
+type TwitServiceClientClient interface {
 	CreateTwit(ctx context.Context, in *CreateTwitReq, opts ...grpc.CallOption) (*CreateTwitResp, error)
 	UpadateTwit(ctx context.Context, in *UpadateReq, opts ...grpc.CallOption) (*UpdateTwitResp, error)
 	DeleteTwit(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Message, error)
@@ -29,123 +29,133 @@ type TwitServiceClient interface {
 	AddLike(ctx context.Context, in *AddLikeReq, opts ...grpc.CallOption) (*AddLikeResp, error)
 	RemoveLike(ctx context.Context, in *DeleleLikeReq, opts ...grpc.CallOption) (*Message, error)
 	AddComment(ctx context.Context, in *AddCommentReq, opts ...grpc.CallOption) (*AddCommentResp, error)
-	RemoveComment(ctx context.Context, in *RemoveVommentReq, opts ...grpc.CallOption) (*Message, error)
+	RemoveComment(ctx context.Context, in *RemoveCommentReq, opts ...grpc.CallOption) (*Message, error)
 	GetComment(ctx context.Context, in *GetCommentReq, opts ...grpc.CallOption) (*GetCommentResp, error)
 	GetCommentById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Comment, error)
 	UpdateComment(ctx context.Context, in *UpdateCommentReq, opts ...grpc.CallOption) (*UpdateCommentResp, error)
+	GetFollowerTwit(ctx context.Context, in *GetTwitsReq, opts ...grpc.CallOption) (*GetTwitsResp, error)
 }
 
-type twitServiceClient struct {
+type twitServiceClientClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTwitServiceClient(cc grpc.ClientConnInterface) TwitServiceClient {
-	return &twitServiceClient{cc}
+func NewTwitServiceClientClient(cc grpc.ClientConnInterface) TwitServiceClientClient {
+	return &twitServiceClientClient{cc}
 }
 
-func (c *twitServiceClient) CreateTwit(ctx context.Context, in *CreateTwitReq, opts ...grpc.CallOption) (*CreateTwitResp, error) {
+func (c *twitServiceClientClient) CreateTwit(ctx context.Context, in *CreateTwitReq, opts ...grpc.CallOption) (*CreateTwitResp, error) {
 	out := new(CreateTwitResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/CreateTwit", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/CreateTwit", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) UpadateTwit(ctx context.Context, in *UpadateReq, opts ...grpc.CallOption) (*UpdateTwitResp, error) {
+func (c *twitServiceClientClient) UpadateTwit(ctx context.Context, in *UpadateReq, opts ...grpc.CallOption) (*UpdateTwitResp, error) {
 	out := new(UpdateTwitResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/UpadateTwit", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/UpadateTwit", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) DeleteTwit(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Message, error) {
+func (c *twitServiceClientClient) DeleteTwit(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Message, error) {
 	out := new(Message)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/DeleteTwit", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/DeleteTwit", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) GetTwits(ctx context.Context, in *GetTwitsReq, opts ...grpc.CallOption) (*GetTwitsResp, error) {
+func (c *twitServiceClientClient) GetTwits(ctx context.Context, in *GetTwitsReq, opts ...grpc.CallOption) (*GetTwitsResp, error) {
 	out := new(GetTwitsResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/GetTwits", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/GetTwits", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) AddLike(ctx context.Context, in *AddLikeReq, opts ...grpc.CallOption) (*AddLikeResp, error) {
+func (c *twitServiceClientClient) AddLike(ctx context.Context, in *AddLikeReq, opts ...grpc.CallOption) (*AddLikeResp, error) {
 	out := new(AddLikeResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/AddLike", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/AddLike", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) RemoveLike(ctx context.Context, in *DeleleLikeReq, opts ...grpc.CallOption) (*Message, error) {
+func (c *twitServiceClientClient) RemoveLike(ctx context.Context, in *DeleleLikeReq, opts ...grpc.CallOption) (*Message, error) {
 	out := new(Message)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/RemoveLike", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/RemoveLike", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) AddComment(ctx context.Context, in *AddCommentReq, opts ...grpc.CallOption) (*AddCommentResp, error) {
+func (c *twitServiceClientClient) AddComment(ctx context.Context, in *AddCommentReq, opts ...grpc.CallOption) (*AddCommentResp, error) {
 	out := new(AddCommentResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/AddComment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/AddComment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) RemoveComment(ctx context.Context, in *RemoveVommentReq, opts ...grpc.CallOption) (*Message, error) {
+func (c *twitServiceClientClient) RemoveComment(ctx context.Context, in *RemoveCommentReq, opts ...grpc.CallOption) (*Message, error) {
 	out := new(Message)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/RemoveComment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/RemoveComment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) GetComment(ctx context.Context, in *GetCommentReq, opts ...grpc.CallOption) (*GetCommentResp, error) {
+func (c *twitServiceClientClient) GetComment(ctx context.Context, in *GetCommentReq, opts ...grpc.CallOption) (*GetCommentResp, error) {
 	out := new(GetCommentResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/GetComment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/GetComment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) GetCommentById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Comment, error) {
+func (c *twitServiceClientClient) GetCommentById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Comment, error) {
 	out := new(Comment)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/GetCommentById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/GetCommentById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twitServiceClient) UpdateComment(ctx context.Context, in *UpdateCommentReq, opts ...grpc.CallOption) (*UpdateCommentResp, error) {
+func (c *twitServiceClientClient) UpdateComment(ctx context.Context, in *UpdateCommentReq, opts ...grpc.CallOption) (*UpdateCommentResp, error) {
 	out := new(UpdateCommentResp)
-	err := c.cc.Invoke(ctx, "/twit.TwitService/UpdateComment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/UpdateComment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TwitServiceServer is the server API for TwitService service.
-// All implementations must embed UnimplementedTwitServiceServer
+func (c *twitServiceClientClient) GetFollowerTwit(ctx context.Context, in *GetTwitsReq, opts ...grpc.CallOption) (*GetTwitsResp, error) {
+	out := new(GetTwitsResp)
+	err := c.cc.Invoke(ctx, "/twit.TwitServiceClient/GetFollowerTwit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TwitServiceClientServer is the server API for TwitServiceClient service.
+// All implementations must embed UnimplementedTwitServiceClientServer
 // for forward compatibility
-type TwitServiceServer interface {
+type TwitServiceClientServer interface {
 	CreateTwit(context.Context, *CreateTwitReq) (*CreateTwitResp, error)
 	UpadateTwit(context.Context, *UpadateReq) (*UpdateTwitResp, error)
 	DeleteTwit(context.Context, *Id) (*Message, error)
@@ -153,311 +163,337 @@ type TwitServiceServer interface {
 	AddLike(context.Context, *AddLikeReq) (*AddLikeResp, error)
 	RemoveLike(context.Context, *DeleleLikeReq) (*Message, error)
 	AddComment(context.Context, *AddCommentReq) (*AddCommentResp, error)
-	RemoveComment(context.Context, *RemoveVommentReq) (*Message, error)
+	RemoveComment(context.Context, *RemoveCommentReq) (*Message, error)
 	GetComment(context.Context, *GetCommentReq) (*GetCommentResp, error)
 	GetCommentById(context.Context, *Id) (*Comment, error)
 	UpdateComment(context.Context, *UpdateCommentReq) (*UpdateCommentResp, error)
-	mustEmbedUnimplementedTwitServiceServer()
+	GetFollowerTwit(context.Context, *GetTwitsReq) (*GetTwitsResp, error)
+	mustEmbedUnimplementedTwitServiceClientServer()
 }
 
-// UnimplementedTwitServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedTwitServiceServer struct {
+// UnimplementedTwitServiceClientServer must be embedded to have forward compatible implementations.
+type UnimplementedTwitServiceClientServer struct {
 }
 
-func (UnimplementedTwitServiceServer) CreateTwit(context.Context, *CreateTwitReq) (*CreateTwitResp, error) {
+func (UnimplementedTwitServiceClientServer) CreateTwit(context.Context, *CreateTwitReq) (*CreateTwitResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTwit not implemented")
 }
-func (UnimplementedTwitServiceServer) UpadateTwit(context.Context, *UpadateReq) (*UpdateTwitResp, error) {
+func (UnimplementedTwitServiceClientServer) UpadateTwit(context.Context, *UpadateReq) (*UpdateTwitResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpadateTwit not implemented")
 }
-func (UnimplementedTwitServiceServer) DeleteTwit(context.Context, *Id) (*Message, error) {
+func (UnimplementedTwitServiceClientServer) DeleteTwit(context.Context, *Id) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTwit not implemented")
 }
-func (UnimplementedTwitServiceServer) GetTwits(context.Context, *GetTwitsReq) (*GetTwitsResp, error) {
+func (UnimplementedTwitServiceClientServer) GetTwits(context.Context, *GetTwitsReq) (*GetTwitsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTwits not implemented")
 }
-func (UnimplementedTwitServiceServer) AddLike(context.Context, *AddLikeReq) (*AddLikeResp, error) {
+func (UnimplementedTwitServiceClientServer) AddLike(context.Context, *AddLikeReq) (*AddLikeResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddLike not implemented")
 }
-func (UnimplementedTwitServiceServer) RemoveLike(context.Context, *DeleleLikeReq) (*Message, error) {
+func (UnimplementedTwitServiceClientServer) RemoveLike(context.Context, *DeleleLikeReq) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveLike not implemented")
 }
-func (UnimplementedTwitServiceServer) AddComment(context.Context, *AddCommentReq) (*AddCommentResp, error) {
+func (UnimplementedTwitServiceClientServer) AddComment(context.Context, *AddCommentReq) (*AddCommentResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddComment not implemented")
 }
-func (UnimplementedTwitServiceServer) RemoveComment(context.Context, *RemoveVommentReq) (*Message, error) {
+func (UnimplementedTwitServiceClientServer) RemoveComment(context.Context, *RemoveCommentReq) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveComment not implemented")
 }
-func (UnimplementedTwitServiceServer) GetComment(context.Context, *GetCommentReq) (*GetCommentResp, error) {
+func (UnimplementedTwitServiceClientServer) GetComment(context.Context, *GetCommentReq) (*GetCommentResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetComment not implemented")
 }
-func (UnimplementedTwitServiceServer) GetCommentById(context.Context, *Id) (*Comment, error) {
+func (UnimplementedTwitServiceClientServer) GetCommentById(context.Context, *Id) (*Comment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommentById not implemented")
 }
-func (UnimplementedTwitServiceServer) UpdateComment(context.Context, *UpdateCommentReq) (*UpdateCommentResp, error) {
+func (UnimplementedTwitServiceClientServer) UpdateComment(context.Context, *UpdateCommentReq) (*UpdateCommentResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateComment not implemented")
 }
-func (UnimplementedTwitServiceServer) mustEmbedUnimplementedTwitServiceServer() {}
+func (UnimplementedTwitServiceClientServer) GetFollowerTwit(context.Context, *GetTwitsReq) (*GetTwitsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFollowerTwit not implemented")
+}
+func (UnimplementedTwitServiceClientServer) mustEmbedUnimplementedTwitServiceClientServer() {}
 
-// UnsafeTwitServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TwitServiceServer will
+// UnsafeTwitServiceClientServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TwitServiceClientServer will
 // result in compilation errors.
-type UnsafeTwitServiceServer interface {
-	mustEmbedUnimplementedTwitServiceServer()
+type UnsafeTwitServiceClientServer interface {
+	mustEmbedUnimplementedTwitServiceClientServer()
 }
 
-func RegisterTwitServiceServer(s grpc.ServiceRegistrar, srv TwitServiceServer) {
-	s.RegisterService(&TwitService_ServiceDesc, srv)
+func RegisterTwitServiceClientServer(s grpc.ServiceRegistrar, srv TwitServiceClientServer) {
+	s.RegisterService(&TwitServiceClient_ServiceDesc, srv)
 }
 
-func _TwitService_CreateTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_CreateTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTwitReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).CreateTwit(ctx, in)
+		return srv.(TwitServiceClientServer).CreateTwit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/CreateTwit",
+		FullMethod: "/twit.TwitServiceClient/CreateTwit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).CreateTwit(ctx, req.(*CreateTwitReq))
+		return srv.(TwitServiceClientServer).CreateTwit(ctx, req.(*CreateTwitReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_UpadateTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_UpadateTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpadateReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).UpadateTwit(ctx, in)
+		return srv.(TwitServiceClientServer).UpadateTwit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/UpadateTwit",
+		FullMethod: "/twit.TwitServiceClient/UpadateTwit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).UpadateTwit(ctx, req.(*UpadateReq))
+		return srv.(TwitServiceClientServer).UpadateTwit(ctx, req.(*UpadateReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_DeleteTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_DeleteTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Id)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).DeleteTwit(ctx, in)
+		return srv.(TwitServiceClientServer).DeleteTwit(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/DeleteTwit",
+		FullMethod: "/twit.TwitServiceClient/DeleteTwit",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).DeleteTwit(ctx, req.(*Id))
+		return srv.(TwitServiceClientServer).DeleteTwit(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_GetTwits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_GetTwits_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetTwitsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).GetTwits(ctx, in)
+		return srv.(TwitServiceClientServer).GetTwits(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/GetTwits",
+		FullMethod: "/twit.TwitServiceClient/GetTwits",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).GetTwits(ctx, req.(*GetTwitsReq))
+		return srv.(TwitServiceClientServer).GetTwits(ctx, req.(*GetTwitsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_AddLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_AddLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddLikeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).AddLike(ctx, in)
+		return srv.(TwitServiceClientServer).AddLike(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/AddLike",
+		FullMethod: "/twit.TwitServiceClient/AddLike",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).AddLike(ctx, req.(*AddLikeReq))
+		return srv.(TwitServiceClientServer).AddLike(ctx, req.(*AddLikeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_RemoveLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_RemoveLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleleLikeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).RemoveLike(ctx, in)
+		return srv.(TwitServiceClientServer).RemoveLike(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/RemoveLike",
+		FullMethod: "/twit.TwitServiceClient/RemoveLike",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).RemoveLike(ctx, req.(*DeleleLikeReq))
+		return srv.(TwitServiceClientServer).RemoveLike(ctx, req.(*DeleleLikeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_AddComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_AddComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddCommentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).AddComment(ctx, in)
+		return srv.(TwitServiceClientServer).AddComment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/AddComment",
+		FullMethod: "/twit.TwitServiceClient/AddComment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).AddComment(ctx, req.(*AddCommentReq))
+		return srv.(TwitServiceClientServer).AddComment(ctx, req.(*AddCommentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_RemoveComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveVommentReq)
+func _TwitServiceClient_RemoveComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveCommentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).RemoveComment(ctx, in)
+		return srv.(TwitServiceClientServer).RemoveComment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/RemoveComment",
+		FullMethod: "/twit.TwitServiceClient/RemoveComment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).RemoveComment(ctx, req.(*RemoveVommentReq))
+		return srv.(TwitServiceClientServer).RemoveComment(ctx, req.(*RemoveCommentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_GetComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_GetComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetCommentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).GetComment(ctx, in)
+		return srv.(TwitServiceClientServer).GetComment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/GetComment",
+		FullMethod: "/twit.TwitServiceClient/GetComment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).GetComment(ctx, req.(*GetCommentReq))
+		return srv.(TwitServiceClientServer).GetComment(ctx, req.(*GetCommentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_GetCommentById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_GetCommentById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Id)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).GetCommentById(ctx, in)
+		return srv.(TwitServiceClientServer).GetCommentById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/GetCommentById",
+		FullMethod: "/twit.TwitServiceClient/GetCommentById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).GetCommentById(ctx, req.(*Id))
+		return srv.(TwitServiceClientServer).GetCommentById(ctx, req.(*Id))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwitService_UpdateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwitServiceClient_UpdateComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateCommentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwitServiceServer).UpdateComment(ctx, in)
+		return srv.(TwitServiceClientServer).UpdateComment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/twit.TwitService/UpdateComment",
+		FullMethod: "/twit.TwitServiceClient/UpdateComment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwitServiceServer).UpdateComment(ctx, req.(*UpdateCommentReq))
+		return srv.(TwitServiceClientServer).UpdateComment(ctx, req.(*UpdateCommentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TwitService_ServiceDesc is the grpc.ServiceDesc for TwitService service.
+func _TwitServiceClient_GetFollowerTwit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTwitsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TwitServiceClientServer).GetFollowerTwit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/twit.TwitServiceClient/GetFollowerTwit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TwitServiceClientServer).GetFollowerTwit(ctx, req.(*GetTwitsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TwitServiceClient_ServiceDesc is the grpc.ServiceDesc for TwitServiceClient service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TwitService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "twit.TwitService",
-	HandlerType: (*TwitServiceServer)(nil),
+var TwitServiceClient_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "twit.TwitServiceClient",
+	HandlerType: (*TwitServiceClientServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateTwit",
-			Handler:    _TwitService_CreateTwit_Handler,
+			Handler:    _TwitServiceClient_CreateTwit_Handler,
 		},
 		{
 			MethodName: "UpadateTwit",
-			Handler:    _TwitService_UpadateTwit_Handler,
+			Handler:    _TwitServiceClient_UpadateTwit_Handler,
 		},
 		{
 			MethodName: "DeleteTwit",
-			Handler:    _TwitService_DeleteTwit_Handler,
+			Handler:    _TwitServiceClient_DeleteTwit_Handler,
 		},
 		{
 			MethodName: "GetTwits",
-			Handler:    _TwitService_GetTwits_Handler,
+			Handler:    _TwitServiceClient_GetTwits_Handler,
 		},
 		{
 			MethodName: "AddLike",
-			Handler:    _TwitService_AddLike_Handler,
+			Handler:    _TwitServiceClient_AddLike_Handler,
 		},
 		{
 			MethodName: "RemoveLike",
-			Handler:    _TwitService_RemoveLike_Handler,
+			Handler:    _TwitServiceClient_RemoveLike_Handler,
 		},
 		{
 			MethodName: "AddComment",
-			Handler:    _TwitService_AddComment_Handler,
+			Handler:    _TwitServiceClient_AddComment_Handler,
 		},
 		{
 			MethodName: "RemoveComment",
-			Handler:    _TwitService_RemoveComment_Handler,
+			Handler:    _TwitServiceClient_RemoveComment_Handler,
 		},
 		{
 			MethodName: "GetComment",
-			Handler:    _TwitService_GetComment_Handler,
+			Handler:    _TwitServiceClient_GetComment_Handler,
 		},
 		{
 			MethodName: "GetCommentById",
-			Handler:    _TwitService_GetCommentById_Handler,
+			Handler:    _TwitServiceClient_GetCommentById_Handler,
 		},
 		{
 			MethodName: "UpdateComment",
-			Handler:    _TwitService_UpdateComment_Handler,
+			Handler:    _TwitServiceClient_UpdateComment_Handler,
+		},
+		{
+			MethodName: "GetFollowerTwit",
+			Handler:    _TwitServiceClient_GetFollowerTwit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
