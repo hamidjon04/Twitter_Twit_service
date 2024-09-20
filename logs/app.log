@@ -1,0 +1,23 @@
+{"time":"2024-09-18T14:00:19.586796316+05:00","level":"ERROR","msg":"Postgres bilan bog'lanilmadi: dial tcp: lookup car_sevice on 127.0.0.53:53: server misbehaving"}
+{"time":"2024-09-18T14:01:33.012519051+05:00","level":"ERROR","msg":"Postgres bilan bog'lanilmadi: dial tcp: lookup tcp/%!s(int=5432): unknown port"}
+{"time":"2024-09-18T14:03:45.061269285+05:00","level":"ERROR","msg":"Postgres bilan bog'lanilmadi: pq: invalid startup packet layout: expected terminator as last byte"}
+{"time":"2024-09-18T14:09:13.926774454+05:00","level":"ERROR","msg":"Postgres bilan bog'lanilmadi: pq: database \"twitter\" does not exist"}
+{"time":"2024-09-18T14:10:14.75376898+05:00","level":"ERROR","msg":"Postgres bilan bog'lanilmadi: pq: database \"twitter\" does not exist"}
+{"time":"2024-09-18T14:11:56.929315568+05:00","level":"ERROR","msg":"listen tcp: lookup grpc-service on 127.0.0.53:53: server misbehaving"}
+{"time":"2024-09-18T14:13:23.138815554+05:00","level":"ERROR","msg":"listen tcp: lookup grpc-service on 127.0.0.53:53: server misbehaving"}
+{"time":"2024-09-18T15:45:30.217297134+05:00","level":"ERROR","msg":"error deleting twit","!BADKEY":"invalid id: the provided hex string is not a valid ObjectID"}
+{"time":"2024-09-18T15:53:22.829331939+05:00","level":"ERROR","msg":"error deleting twit","!BADKEY":"the provided hex string is not a valid ObjectID"}
+{"time":"2024-09-18T15:53:45.352951707+05:00","level":"ERROR","msg":"error deleting twit","!BADKEY":"the provided hex string is not a valid ObjectID"}
+{"time":"2024-09-18T17:33:30.899464176+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"bunday twit mavjud emas"}
+{"time":"2024-09-18T17:34:54.909043407+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"bunday twit mavjud emas"}
+{"time":"2024-09-18T17:36:35.298715027+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"bunday twit mavjud emas"}
+{"time":"2024-09-18T17:37:13.201433105+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"bunday twit mavjud emas"}
+{"time":"2024-09-18T17:37:31.136022031+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"bunday twit mavjud emas"}
+{"time":"2024-09-18T17:41:50.858394943+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"pq: relation \"likes\" does not exist"}
+{"time":"2024-09-18T17:57:43.828705083+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"pq: duplicate key value violates unique constraint \"unique_like\""}
+{"time":"2024-09-18T17:59:10.361254936+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"pq: duplicate key value violates unique constraint \"unique_like\""}
+{"time":"2024-09-18T18:17:41.03984522+05:00","level":"ERROR","msg":"error adding like","!BADKEY":"pq: duplicate key value violates unique constraint \"unique_like\""}
+{"time":"2024-09-18T18:17:44.787173014+05:00","level":"ERROR","msg":"error removing like","!BADKEY":"pq: syntax error at or near \"likes\""}
+{"time":"2024-09-18T18:18:07.290521319+05:00","level":"ERROR","msg":"error removing like","!BADKEY":"pq: syntax error at or near \"likes\""}
+{"time":"2024-09-18T18:18:45.668072632+05:00","level":"ERROR","msg":"error removing like","!BADKEY":"pq: syntax error at or near \"likes\""}
+{"time":"2024-09-18T18:19:42.44043479+05:00","level":"ERROR","msg":"error removing like","!BADKEY":"pq: column \"deleted_at\" does not exist"}

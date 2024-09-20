@@ -53,7 +53,7 @@ func ConnectMongo() (*mongo.Database, error) {
 	defer cancel()
 
 	// MongoDB serveriga ulanish uchun konfiguratsiya
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017") // localhost o'rniga real IP yoki domen ishlating
+	clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017") // localhost o'rniga real IP yoki domen ishlating
 
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
@@ -67,6 +67,5 @@ func ConnectMongo() (*mongo.Database, error) {
 		return nil, err
 	}
 
-	log.Println("MongoDB serveriga muvaffaqiyatli ulandik.")
 	return client.Database("twit"), nil
 }

@@ -1,4 +1,4 @@
-package service
+package twitService
 
 import (
 	"context"
@@ -88,12 +88,8 @@ func (s *Service) GetFollowerTwit(ctx context.Context, in *pb.GetTwitsReq) (*pb.
 }
 
 func (s *Service) AddLike(ctx context.Context, in *pb.AddLikeReq) (*pb.AddLikeResp, error) {
-	like := &models.Like{
-		Twit_id:    in.TwitId,
-		Clicker_id: in.ClickerId,
-	}
 
-	resp, err := s.Storage.Like().AddLike(ctx, like)
+	resp, err := s.Storage.Like().AddLike(s.Storage.MongoDatabase(), in)
 	if err != nil {
 		s.Logget.Error("error adding like", err)
 		return nil, status.Errorf(codes.Internal, "internal error")
@@ -102,12 +98,12 @@ func (s *Service) AddLike(ctx context.Context, in *pb.AddLikeReq) (*pb.AddLikeRe
 	return resp, nil
 }
 
-func (s *Service) RemoveLike(ctx context.Context, in *pb.DeleleLikeReq) (*pb.Message, error) {
-	err := s.Storage.Like().RemoveLike(ctx, in)
+func (s *Service) RemoveLike(ctx context.Context, in *pb.DeleteLikeReq) (*pb.Message, error) {
+	resp, err := s.Storage.Like().DeleteLike(s.Storage.MongoDatabase(), in)
 	if err != nil {
 		s.Logget.Error("error removing like", err)
 		return nil, status.Errorf(codes.Internal, "internal error")
 	}
 
-	return &pb.Message{Message: "like removed"}, nil
+	return resp, nil
 }

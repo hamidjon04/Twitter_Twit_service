@@ -1,0 +1,28 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - twitter
+
+  twit-service:
+    build: .
+    container_name: twit-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+    networks:
+      - twitter
+
+volumes:
+  mongo-data:
+  postgres-data:
+  
+networks:
+  twitter:
+    external: true

@@ -68,13 +68,20 @@ func (r twitImpl) UpdateTwit(ctx context.Context, in *models.Twit) (*pb.UpdateTw
 		"updated_at": in.UpdatedAt,
 	}}
 
-	var resp *pb.UpdateTwitResp
-	err := collectin.FindOneAndUpdate(ctx, filter, update).Decode(&resp)
+	var res models.UpdateTwit
+	err := collectin.FindOneAndUpdate(ctx, filter, update).Decode(&res)
 	if err != nil {
 		return nil, err
 	}
 
-	return resp, nil
+	return &pb.UpdateTwitResp{
+		Id:        res.Id,
+		UserId:    res.UserId,
+		Content:   res.Content,
+		Media:     res.Media,
+		UpdatedAt: res.UpdatedAt,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (r twitImpl) DeleteTwit(ctx context.Context, id string) error {
@@ -90,6 +97,7 @@ func (r twitImpl) DeleteTwit(ctx context.Context, id string) error {
 	}}
 
 	_, err := collectin.UpdateOne(ctx, filter, update)
+
 	return err
 
 }
@@ -157,4 +165,28 @@ func (r twitImpl) GetFollowerTwit(ctx context.Context, id []string) (*pb.GetTwit
 
 	}
 	return &pb.GetTwitsResp{Twits: twits}, nil
+}
+
+func IsTwitExists(Coll *mongo.Collection, twit_id string) bool {
+	// Filter yaratish
+	filter := bson.M{
+		"$and": []bson.M{
+			{"_id": twit_id},
+			{"deleted_at": bson.M{"$eq": ""}}, // deleted_at bo'sh bo'lsa
+		},
+	}
+
+	// Natija uchun Twit modelini yaratish
+	var result models.Twit
+
+	// FindOne dan foydalanib, Twit'ni qidiramiz
+	err := Coll.FindOne(context.Background(), filter).Decode(&result)
+
+	// Agar xato bo'lsa yoki ID bo'sh bo'lsa, false qaytaramiz
+	if err == mongo.ErrNoDocuments || err != nil || result.ID == "" {
+		return false
+	}
+
+	// Twit mavjud bo'lsa, true qaytaramiz
+	return true
 }
